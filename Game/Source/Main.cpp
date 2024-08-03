@@ -4,23 +4,29 @@
 #include <cstdlib>
 #include <vector>
 
+
 int main(int argc, char* argv[]) {
-	g_engine.Initialize();
 
-	while (!g_engine.IsQuit())
+	std::unique_ptr<Engine> engine = std::make_unique<Engine>();
+	engine->Initialize();
+
+	File::SetFilePath("Assets");
+	std::cout << File::GetFilePath() << std::endl;
+
+	while (!engine->IsQuit())
 	{
-		g_engine.Update();
+		engine->Update();
 
-		RENDERER.SetColor(0, 0, 0);
-		RENDERER.BeginFrame();
+		engine->GetRenderer().SetColor(0, 0, 0);
+		engine->GetRenderer().BeginFrame();
 
-		PARTICLESYSTEM.Draw(RENDERER);
+		engine->GetParticleSystem().Draw(engine->GetRenderer());
 
-		RENDERER.EndFrame();
+		engine->GetRenderer().EndFrame();
 
 	}
 
-	g_engine.Shutdown();
+	engine->Shutdown();
 
 	return 0;
 }
