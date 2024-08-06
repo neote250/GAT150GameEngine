@@ -1,5 +1,13 @@
 #include "Actor.h"
-#include "../Renderer/Model.h"
+#include "Components/RenderComponent.h"
+
+void Actor::Initialize()
+{
+	for (auto& component : _components)
+	{
+		component->Initialize();
+	}
+}
 
 void Actor::Update(float dt)
 {
@@ -11,6 +19,11 @@ void Actor::Update(float dt)
 		}
 	}
 
+	for (auto& component : _components)
+	{
+		component->Update(dt);
+	}
+
 	_transform.position += (_velocity * dt);
 	_velocity *= 1.0f / (1.0f + _damping * dt);
 }
@@ -19,7 +32,20 @@ void Actor::Draw(Renderer& renderer)
 {
 	if (_destroyed) return;
 
-	if (_model) {
-		_model->Draw(renderer, _transform);
+	for (auto& component : _components)
+	{
+		RenderComponent* renderComponent = dynamic_cast<RenderComponent*>(component.get());
+		if (renderComponent) 
+		{
+			renderComponent->Draw(renderer);
+		}
 	}
+
 }
+
+void Actor::AddComponent(std::unique_ptr<Component> component)
+{
+	component->owner = this;
+	_components.push_back(std::move(component));
+}
+

@@ -1,7 +1,10 @@
 #pragma once
+#include <SDL_image.h>
 #include <SDL.h>
 #include <SDL_ttf.h>
 #include <string>
+
+class Texture;
 
 class Renderer {
 public:
@@ -23,11 +26,15 @@ public:
 	void DrawLine(float x1, float y1, float x2, float y2);
 	void DrawPoint(int x, int y);
 	void DrawPoint(float x, float y);
+	
+	void DrawTexture(Texture* texture, float x, float y, float angle = 0.0f);
 
 	int GetWidth() const { return _width; }
 	int GetHeight() const { return _height; }
 
 	friend class Text;
+	friend class Texture;
+
 
 protected:
 	SDL_Window* _window{ nullptr };

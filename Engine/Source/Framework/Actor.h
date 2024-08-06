@@ -1,31 +1,34 @@
 #pragma once
-#include "../Math/Transform.h"
-#include "../Renderer/Model.h"
+#include "Object.h"
+#include "Math/Transform.h"
+#include "Components/Component.h"
 #include <string>
+#include <memory>
+#include <vector>
 
 class Renderer;
 class Scene;
 
-class Actor {
+class Actor : public Object
+{
 public:
 	Actor() {}
 	Actor(const Transform& transform):_transform{ transform }{}
-	Actor(const Transform& transform, Model* model) :
-		_transform{ transform }
-		, _model{ model }
-	{}
 
+	void Initialize() override;
 	virtual void Update(float dt);
-	virtual void Draw(Renderer& renderer); //not like abstract method, doesn't need to be overwritten
+	virtual void Draw(Renderer& renderer);
+
+	void AddComponent(std::unique_ptr<Component> component);
 
 	void SetDamping(float damping) { _damping = damping; }
 	void SetLifespan(float lifespan) { _lifespan = lifespan; }
 	const Transform& GetTranform() { return _transform; }
 	void SetTag(const std::string tag) { _tag = tag; }
 	const std::string& GetTag() { return _tag; }
-	float GetRadius() { return (_model) ? _model->GetRadius() * _transform.scale : 0; }
+	float GetRadius() { return (0); }
 
-	virtual void OnCollision(Actor* actor) = 0; //abstract function
+	virtual void OnCollision(Actor* actor) {}
 
 	friend class Scene;
 
@@ -39,6 +42,7 @@ protected:
 	Vector2 _velocity{0,0};
 	float _damping{0};
 
-	Model* _model { nullptr };
 	Scene* _scene{ nullptr };
+
+	std::vector<std::unique_ptr<Component>> _components;
 };

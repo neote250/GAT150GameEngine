@@ -11,6 +11,12 @@
 #include "Renderer/Text.h"
 #include "Renderer/Font.h"
 #include "Renderer/Model.h"
+#include "Renderer/Texture.h"
+//Resources
+#include "Resource/Resource.h"
+#include "Resource/ResourceManager.h"
+//Components
+#include "Components/TextureComponent.h"
 //Input
 #include "Input/Input.h"
 //Audio
@@ -53,5 +59,4 @@ private:
 	std::unique_ptr	<Input> _input;
 	std::unique_ptr	<Audio> _audio;
 	std::unique_ptr	<ParticleSystem> _particleSystem;
-
 };

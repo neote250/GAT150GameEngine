@@ -10,6 +10,8 @@ bool Engine::Initialize()
     _input = std::make_unique<Input>();
     _audio = std::make_unique<Audio>();
     _particleSystem = std::make_unique<ParticleSystem>();
+    //_texture = std::make_unique<Texture>();
+    _time = std::make_unique<Time>();
     
     _renderer->Initialize();
     _renderer->CreateWindow("Game Engine", 800, 600);
@@ -18,7 +20,6 @@ bool Engine::Initialize()
 
     _audio->Initialize();
 
-    _time = std::make_unique<Time>();
 
     return true;
 }
