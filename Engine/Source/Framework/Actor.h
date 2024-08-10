@@ -15,6 +15,8 @@ public:
 	Actor() {}
 	Actor(const Transform& transform):_transform{ transform }{}
 
+	CLASS_DECLARATION(Actor)
+
 	void Initialize() override;
 	virtual void Update(float dt);
 	virtual void Draw(Renderer& renderer);
@@ -24,6 +26,7 @@ public:
 	void SetDamping(float damping) { _damping = damping; }
 	void SetLifespan(float lifespan) { _lifespan = lifespan; }
 	const Transform& GetTranform() { return _transform; }
+	void SetTransform(const Transform& transform) { _transform = transform; }
 	void SetTag(const std::string tag) { _tag = tag; }
 	const std::string& GetTag() { return _tag; }
 	float GetRadius() { return (0); }

@@ -4,6 +4,9 @@
 #include "Core/EngineTime.h"
 #include "Core/EAssert.h"
 #include "Core/EFile.h"
+#include "Core/Json.h"
+#include "Core/Singleton.h"
+#include "Core/Factory.h"
 //Renderer
 #include "Renderer/Renderer.h"
 #include "Renderer/Particle.h"
