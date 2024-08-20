@@ -1,61 +1,81 @@
 #include "Scene.h"
 #include "Actor.h"
-#include "../Renderer/Model.h"
+#include "Core/Factory.h"
+#include "Components/CollisionComponent.h"
 #include <algorithm>
+
+void Scene::Initialize()
+{
+	for (auto& actor : _actors) { actor->Initialize(); }
+}
 
 void Scene::Update(float dt)
 {
 	//update
-	for (auto& actor : _actors) {actor->Update(dt);}
-
-	//destroy
-	_actors.erase(
-		std::remove_if(_actors.begin(), _actors.end(), [](auto& actor) {return actor->_destroyed; })
-		, _actors.end()
-	);
-	//std::erase_if(_actors, [](Actor* actor) {return actor->_destroyed; });
-	
-	//auto iter = _actors.begin();
-	//while (iter != _actors.end()) {
-	//	iter = ((*iter)->_destroyed) ? _actors.erase(iter) : ++iter;
-	//}
-
+	for (auto& actor : _actors) { if (actor->active) actor->Update(dt);}
 
 	//collision
-	for (auto& actor1 : _actors) { 
-		for (auto& actor2 : _actors) {
-			if (actor1 == actor2 || (actor1->_destroyed||actor2->_destroyed)) continue;
+	for (auto& actor1 : _actors) 
+	{ 
+		CollisionComponent* collision1 = actor1->GetComponent<CollisionComponent>();
+		if (!collision1) continue;
 
-			Vector2 direction = actor1->GetTranform().position - actor2->GetTranform().position;
-			float distance = direction.Length();
+		for (auto& actor2 : _actors)
+		{
+			//don't check with self
+			if (actor1 == actor2)continue;
 
-			float radius = actor1->GetRadius() + actor2->GetRadius();
+			CollisionComponent* collision2 = actor2->GetComponent<CollisionComponent>();
+			if (!collision2) continue;
 
-			if (distance <= radius) {
-				actor1->OnCollision(actor2.get());
-				actor2->OnCollision(actor1.get());
+			if (collision1->CheckCollision(collision2))
+			{
+				//std::cout << "hit\n";
+				if (actor1->OnCollisionEnter)actor1->OnCollisionEnter(actor2.get());
+				if (actor2->OnCollisionEnter)actor2->OnCollisionEnter(actor1.get());
 			}
 		}
 	}
 
-
+	//destroy
+	_actors.erase(
+		std::remove_if(_actors.begin(), _actors.end(), [](auto& actor) {return actor->destroyed; })
+		, _actors.end()
+	);
 
 }
 
 void Scene::Draw(Renderer& renderer)
 {
 	for (auto& actor : _actors) {
-		actor->Draw(renderer);
+		if (actor->active) actor->Draw(renderer);
 	}
 }
 
 void Scene::AddActor(std::unique_ptr<Actor> actor)
 {
-	actor->_scene = this;
+	actor->scene = this;
 	_actors.push_back(std::move(actor));
 }
 
 void Scene::RemoveAll()
 {
 	_actors.clear();
+}
+
+void Scene::Read(const json_t& value)
+{
+	if (HAS_DATA(value, _actors) && GET_DATA(value, _actors).IsArray())
+	{
+		for (auto& actorValue : GET_DATA(value, _actors).GetArray())
+		{
+			auto actor = Factory::Instance().Create<Actor>(Actor::GetTypeName());
+			actor->Read(actorValue);
+
+			AddActor(std::move(actor));
+		}
+	}
+}
+void Scene::Write(json_t& value)
+{
 }

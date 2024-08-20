@@ -4,6 +4,7 @@
 #include "Core/EngineTime.h"
 #include "Core/EAssert.h"
 #include "Core/EFile.h"
+#include "Core/EString.h"
 #include "Core/Json.h"
 #include "Core/Singleton.h"
 #include "Core/Factory.h"
@@ -20,6 +21,9 @@
 #include "Resource/ResourceManager.h"
 //Components
 #include "Components/TextureComponent.h"
+#include "Components/EnginePhysicsComponent.h"
+#include "Components/TextComponent.h"
+#include "../../Game/Source/Components/PlayerComponent.h"
 //Input
 #include "Input/Input.h"
 //Audio
@@ -32,6 +36,7 @@
 //Framework
 #include "Framework/Actor.h"
 #include "Framework/Scene.h"
+#include "Framework/Game.h"
 
 #include <fmod.hpp>
 #include <SDL.h>

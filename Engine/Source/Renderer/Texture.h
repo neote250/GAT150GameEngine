@@ -10,6 +10,7 @@ class Texture : public Resource
 {
 public:
 	Texture() = default;
+	Texture(SDL_Texture* texture) : _texture{ texture } {}
 	~Texture();
 
 	bool Load(const std::string& filename, class Renderer& renderer);

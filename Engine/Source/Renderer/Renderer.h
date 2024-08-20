@@ -1,10 +1,11 @@
 #pragma once
-#include <SDL_image.h>
 #include <SDL.h>
 #include <SDL_ttf.h>
+#include <SDL_image.h>
 #include <string>
+#include <memory>
 
-class Texture;
+struct Transform;
 
 class Renderer {
 public:
@@ -27,7 +28,8 @@ public:
 	void DrawPoint(int x, int y);
 	void DrawPoint(float x, float y);
 	
-	void DrawTexture(Texture* texture, float x, float y, float angle = 0.0f);
+	void DrawTexture(std::weak_ptr<class Texture> texture, float x, float y, float angle = 0.0f);
+	void DrawTexture(std::weak_ptr<class Texture> texture, const Transform& transform, bool hflip = false);
 
 	int GetWidth() const { return _width; }
 	int GetHeight() const { return _height; }

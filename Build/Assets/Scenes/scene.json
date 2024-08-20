@@ -1,0 +1,91 @@
+{
+  "_actors": [
+    {
+      "name": "background",
+      "transform": {
+        "position": [ 0, 0 ],
+        "rotation": 0,
+        "scale": 1.6
+      },
+      "components": [
+        {
+          "type": "TextureComponent",
+          "textureName": "Textures/Purple_Nebula.png"
+        }
+      ]
+    },
+    {
+      "name": "player",
+      "transform": {
+        "position": [ 60, 60 ],
+        "rotation": 0,
+        "scale": 1
+      },
+      "components": [
+        {
+          "type": "TextureComponent",
+          "textureName": "Textures/player.png"
+        },
+        {
+          "type": "EnginePhysicsComponent",
+          "velocity": [ 0, 0 ],
+          "damping": 3.0
+        },
+        {
+          "type": "PlayerComponent",
+          "speed": 700
+        },
+        {
+          "type": "CircleCollisionComponent",
+          "radius": 24
+        }
+      ]
+    },
+
+
+
+    {
+      "name": "enemy",
+      "transform": {
+        "position": [ 260, 360 ],
+        "rotation": 0,
+        "scale": 2.5
+      },
+      "components": [
+        {
+          "type": "TextureComponent",
+          "textureName": "Textures/enemy.png"
+        },
+        {
+          "type": "CircleCollisionComponent",
+          "radius": 24
+        }
+      ]
+    },
+
+
+
+    {
+      "name": "text",
+      "active": true,
+      "transform": {
+        "position": [ 560, 360 ],
+        "rotation": 0,
+        "scale": 2
+      },
+      "components": [
+        {
+          "type": "TextComponent",
+          "text": "Goodbye World?",
+          "fontName": "Fonts/AlphabetFantasie.ttf",
+          "fontSize": 24,
+          "color": [ 0, 1, 0, 1 ]
+        }
+      ]
+    }
+
+
+
+
+  ]
+}
