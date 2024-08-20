@@ -37,6 +37,8 @@
 #include "Framework/Actor.h"
 #include "Framework/Scene.h"
 #include "Framework/Game.h"
+//Physics
+#include "Physics/Physics.h"
 
 #include <fmod.hpp>
 #include <SDL.h>
@@ -59,9 +61,15 @@ public:
 	Time& GetTime() { return *_time; }
 	bool IsQuit() { return quit; }
 
+	Physics& GetPhysics() { return *_physics; }
+
+
+
+
 private:
 	bool quit{ false };
 
+	std::unique_ptr <Physics> _physics;
 	std::unique_ptr	<Time> _time;
 	std::unique_ptr	<Renderer> _renderer;
 	std::unique_ptr	<Input> _input;

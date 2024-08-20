@@ -1,6 +1,8 @@
 #include "Engine.h"
 #include <crtdbg.h>
 
+
+
 bool Engine::Initialize()
 {
     //enable memory leak check
@@ -12,6 +14,7 @@ bool Engine::Initialize()
     _particleSystem = std::make_unique<ParticleSystem>();
     //_texture = std::make_unique<Texture>();
     _time = std::make_unique<Time>();
+    _physics = std::make_unique<Physics>();
     
     _renderer->Initialize();
     _renderer->CreateWindow("Game Engine", 800, 600);
@@ -19,6 +22,7 @@ bool Engine::Initialize()
     _input->Initialize();
 
     _audio->Initialize();
+    _physics->Initialize();
 
 
     return true;
@@ -29,6 +33,7 @@ void Engine::Shutdown()
     _renderer->Shutdown();
     _input->Shutdown();
     _audio->Shutdown();
+    _physics->Shutdown();
 
 
     //display memory leaks
@@ -50,4 +55,5 @@ void Engine::Update()
     _input->Update();
     _particleSystem->Update(_time->GetDeltaTime());
     _audio->Update();
+    _physics->Update(_time->GetDeltaTime());
 }
