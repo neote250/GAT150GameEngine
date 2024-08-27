@@ -7,7 +7,7 @@ class Scene;
 
 class Game {
 public:
-	Game() {}
+	Game() = default;
 	Game(Engine* engine) : _engine{ engine } {}
 
 	virtual bool Initialize() = 0;
@@ -27,6 +27,4 @@ protected:
 	int _lives = 0;
 
 	Engine* _engine{ nullptr };
-	Scene* _scene{ nullptr };
-
 };

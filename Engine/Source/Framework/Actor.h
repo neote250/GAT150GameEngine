@@ -16,14 +16,17 @@ class Actor : public Object
 public:
 	Actor() {}
 	Actor(const Transform& transform):transform{ transform }{}
+	Actor(const Actor& other);
 
 	CLASS_DECLARATION(Actor)
+	CLASS_PROTOTYPE(Actor)
 
 	void Initialize() override;
 	virtual void Update(float dt);
 	virtual void Draw(Renderer& renderer);
 	
 	std::function<void(Actor*)> OnCollisionEnter;
+	std::function<void(Actor*)> OnCollisionExit;
 
 	void AddComponent(std::unique_ptr<Component> component);
 

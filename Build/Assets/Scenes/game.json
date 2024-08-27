@@ -1,0 +1,141 @@
+{
+  "_actors": [
+
+
+
+    {
+      "name": "background",
+      "transform": {
+        "position": [ 400, 300 ],
+        "rotation": 0,
+        "scale": 1
+      },
+      "components": [
+        {
+          "type": "TextureComponent",
+          "textureName": "Textures/background.png"
+
+        }
+      ]
+    },
+
+
+
+    {
+      "name": "player",
+      "transform": {
+        "position": [ 60, 60 ],
+        "rotation": 0,
+        "scale": 1
+      },
+      "components": [
+        {
+          "type": "TextureAnimationComponent",
+          "animationName": "idle",
+          "animations": [
+            {
+              "name": "idle",
+              "fps": 12,
+              "numColumns": 4,
+              "numRows": 1,
+              "startFrame": 1,
+              "endFrame": 4,
+              "textureName": "Textures/Idle_KG_1.png"
+            },
+            {
+              "name": "run",
+              "fps": 12,
+              "numColumns": 7,
+              "numRows": 1,
+              "startFrame": 1,
+              "endFrame": 7,
+              "textureName": "Textures/Walking_KG_1.png"
+            }
+          ]
+        },
+        {
+          "type": "Box2DPhysicsComponent",
+          "angularDamping": 0.85,
+          "gravityScale": 0,
+          "constrainAngle": true,
+          "restitution": 0.1,
+          "shape": "capsule",
+          "size": [ 32, 96 ],
+          "scale": [ 0.8, 0.65 ]
+        },
+        {
+          "type": "PlayerComponent",
+          "speed": 700
+        }
+      ]
+    },
+
+    {
+      "name": "bat",
+      "transform": {
+        "position": [ 560, 400 ],
+        "rotation": 0,
+        "scale": 1
+      },
+      "components": [
+        {
+          "type": "TextureAnimationComponent",
+          "animationName": "idle",
+          "animations": [
+            {
+              "name": "idle",
+              "textureName": "textures/bat.png",
+              "fps": 10,
+              "loop": true,
+              "numColumns": 4,
+              "numRows": 1,
+              "startFrame": 1,
+              "endFrame": 4
+            }
+          ]
+        }
+      ]
+    },
+
+
+    {
+      "name": "rocket",
+      "prototype": true,
+      "transform": {
+        "position": [ 400, 300 ],
+        "rotation": 0,
+        "scale": 1
+      },
+      "components": [
+        {
+          "type": "TextureComponent",
+          "textureName": "textures/rocket.png"
+        },
+        {
+          "type": "Box2DPhysicsComponent",
+          "damping": 0.0,
+          "angularDamping": 0.0,
+          "gravityScale": 0,
+          "isSensor": true,
+          "size": [ 32, 16 ]
+        },
+        {
+          "type": "RocketComponent",
+          "speed": 400
+        },
+        {
+          "type": "AudioComponent",
+          "soundName": "audio/cowbell.wav",
+          "playOnStart": true
+        }
+
+      ]
+    }
+
+
+
+
+
+
+  ]
+}

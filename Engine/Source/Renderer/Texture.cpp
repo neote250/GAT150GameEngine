@@ -1,5 +1,3 @@
-
-//#include "../Core/EFile.h"
 #include "Texture.h"
 #include "../Core/EAssert.h"
 #include "Renderer.h"

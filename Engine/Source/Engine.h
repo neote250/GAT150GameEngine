@@ -19,11 +19,14 @@
 //Resources
 #include "Resource/Resource.h"
 #include "Resource/ResourceManager.h"
+//EventManager
+#include "Event/EventManager.h"
 //Components
 #include "Components/TextureComponent.h"
 #include "Components/EnginePhysicsComponent.h"
 #include "Components/TextComponent.h"
 #include "../../Game/Source/Components/PlayerComponent.h"
+#include "Components/TextureAnimationComponent.h"
 //Input
 #include "Input/Input.h"
 //Audio
@@ -33,6 +36,7 @@
 #include "Math/Random.h"
 #include "Math/MathUtils.h"
 #include "Math/Transform.h"
+#include "Math/Rect.h"
 //Framework
 #include "Framework/Actor.h"
 #include "Framework/Scene.h"

@@ -179,8 +179,11 @@ sdl2_ttf.lib
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Components\CharacterComponent.cpp" />
     <ClCompile Include="Source\Components\PlayerComponent.cpp" />
+    <ClCompile Include="Source\Components\RocketComponent.cpp" />
     <ClCompile Include="Source\Main.cpp" />
+    <ClCompile Include="Source\SpaceGame.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Engine\Engine.vcxproj">
@@ -191,9 +194,14 @@ sdl2_ttf.lib
     <Text Include="..\Build\Assets\Scenes\scene.json" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Components\CharacterComponent.h" />
     <ClInclude Include="Source\Components\PlayerComponent.h" />
+    <ClInclude Include="Source\Components\RocketComponent.h" />
+    <ClInclude Include="Source\SpaceGame.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\Build\Assets\Scenes\game.json" />
+    <None Include="..\Build\Assets\Scenes\tilemap.json" />
     <None Include="cpp.hint" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
