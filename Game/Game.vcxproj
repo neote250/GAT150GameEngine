@@ -201,6 +201,7 @@ sdl2_ttf.lib
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Build\Assets\Scenes\game.json" />
+    <None Include="..\Build\Assets\Scenes\space.json" />
     <None Include="..\Build\Assets\Scenes\tilemap.json" />
     <None Include="cpp.hint" />
   </ItemGroup>

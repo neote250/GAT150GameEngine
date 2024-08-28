@@ -11,6 +11,7 @@ void RocketComponent::Initialize()
 void RocketComponent::Update(float dt)
 {
 	owner->GetComponent<PhysicsComponent>()->SetVelocity({ owner->transform.Forward() * speed });
+	//owner->GetComponent<EnginePhysicsComponent>()->ApplyForce({ owner->transform.Forward() * speed });
 }
 
 void RocketComponent::OnCollisionEnter(Actor* actor)

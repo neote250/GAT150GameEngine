@@ -14,7 +14,6 @@
         {
           "type": "TextureComponent",
           "textureName": "Textures/background.png"
-
         }
       ]
     },
@@ -23,8 +22,9 @@
 
     {
       "name": "player",
+      "persistent": true,
       "transform": {
-        "position": [ 60, 60 ],
+        "position": [ 400, 500 ],
         "rotation": 0,
         "scale": 1
       },
@@ -55,8 +55,10 @@
         },
         {
           "type": "Box2DPhysicsComponent",
-          "angularDamping": 0.85,
+          "angularDamping": 1,
+          "damping": 1,
           "gravityScale": 0,
+          "friction": 0.8,
           "constrainAngle": true,
           "restitution": 0.1,
           "shape": "capsule",
@@ -65,7 +67,7 @@
         },
         {
           "type": "PlayerComponent",
-          "speed": 700
+          "speed": 450
         }
       ]
     },
@@ -77,6 +79,7 @@
         "rotation": 0,
         "scale": 1
       },
+      "prototype": true,
       "components": [
         {
           "type": "TextureAnimationComponent",
@@ -93,6 +96,18 @@
               "endFrame": 4
             }
           ]
+        },
+        {
+          "type": "Box2DPhysicsComponent",
+          "angularDamping": 1,
+          "damping": 1,
+          "gravityScale": 0,
+          "friction": 0.8,
+          "constrainAngle": true,
+          "restitution": 0.1,
+          "shape": "capsule",
+          "size": [ 32, 96 ],
+          "scale": [ 0.8, 0.65 ]
         }
       ]
     },

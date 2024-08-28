@@ -30,13 +30,22 @@ bool SpaceGame::Initialize()
 
 void SpaceGame::Shutdown()
 {
-	_scene->RemoveAll();
+	_scene->RemoveAll(true);
 }
 
 void SpaceGame::Update(float dt)
 {
-	_scene->Update(dt);
+	spawnTimer -= dt;
+	
+	if(spawnTimer<=0)
+	{
+	auto bat = Factory::Instance().Create<Actor>("bat");
+	bat->transform.position = Vector2{ randomf(800),randomf(300) };
+	_scene->AddActor(std::move(bat), true);
+	spawnTimer = 2;
+	}
 
+	_scene->Update(dt);
 }
 
 void SpaceGame::Draw(Renderer& renderer)

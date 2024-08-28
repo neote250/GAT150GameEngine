@@ -4,6 +4,7 @@
 
     {
       "type": "Actor",
+      "persistent": true,
       "name": "tile01",
       "tag": "Ground",
       "prototype": true,
@@ -33,6 +34,7 @@
 
     {
       "type": "Actor",
+      "persistent": true,
       "name": "tile02",
       "tag": "Ground",
       "prototype": true,

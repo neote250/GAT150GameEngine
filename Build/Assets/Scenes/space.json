@@ -1,11 +1,9 @@
 {
   "_actors": [
-
-
     {
       "name": "background",
       "transform": {
-        "position": [ 400, 300 ],
+        "position": [ 400, 400 ],
         "rotation": 0,
         "scale": 1.6
       },
@@ -16,8 +14,6 @@
         }
       ]
     },
-
-
     {
       "name": "player",
       "persistent": true,
@@ -32,15 +28,17 @@
           "textureName": "Textures/player.png"
         },
         {
-          "type": "Box2DPhysicsComponent",
-          "damping": 0.85,
-          "angularDamping": 0.85,
-          "gravityScale": 0,
-          "size": [ 32, 32 ]
+          "type": "EnginePhysicsComponent",
+          "velocity": [ 0, 0 ],
+          "damping": 3.0
         },
         {
           "type": "PlayerComponent",
           "speed": 700
+        },
+        {
+          "type": "CircleCollisionComponent",
+          "radius": 24
         }
       ]
     },
@@ -60,33 +58,8 @@
           "textureName": "Textures/enemy.png"
         },
         {
-          "type": "Box2DPhysicsComponent",
-          "damping": 0.85,
-          "angularDamping": 0.85,
-          "gravityScale": 0,
-          "size": [ 32, 32 ]
-
-        }
-      ]
-    },
-
-
-
-    {
-      "name": "text",
-      "active": true,
-      "transform": {
-        "position": [ 560, 360 ],
-        "rotation": 0,
-        "scale": 2
-      },
-      "components": [
-        {
-          "type": "TextComponent",
-          "text": "Goodbye World?",
-          "fontName": "Fonts/AlphabetFantasie.ttf",
-          "fontSize": 24,
-          "color": [ 0, 1, 0, 1 ]
+          "type": "CircleCollisionComponent",
+          "radius": 24
         }
       ]
     },
@@ -106,12 +79,8 @@
           "textureName": "textures/rocket.png"
         },
         {
-          "type": "Box2DPhysicsComponent",
-          "damping": 0.0,
-          "angularDamping": 0.0,
-          "gravityScale": 0,
-          "isSensor": true,
-          "size": [ 32, 16 ]
+          "type": "CircleCollisionComponent",
+          "radius": 24
         },
         {
           "type": "RocketComponent",

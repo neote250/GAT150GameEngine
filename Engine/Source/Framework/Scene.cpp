@@ -43,9 +43,10 @@ void Scene::AddActor(std::unique_ptr<Actor> actor, bool initialize)
 	_actors.push_back(std::move(actor));
 }
 
-void Scene::RemoveAll()
+void Scene::RemoveAll(bool isTrue)
 {
 	_actors.clear();
+	//std::erase_if(_actors, [force](auto& actor) {return(force || actor->destroyed;)!actor->persistent); });
 }
 
 

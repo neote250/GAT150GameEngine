@@ -21,4 +21,5 @@ public:
 
 private:
 	std::unique_ptr<class Scene> _scene;
+	float spawnTimer = 2;
 };
