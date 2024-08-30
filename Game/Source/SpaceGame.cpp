@@ -35,15 +35,53 @@ void SpaceGame::Shutdown()
 
 void SpaceGame::Update(float dt)
 {
-	spawnTimer -= dt;
-	
-	if(spawnTimer<=0)
+
+	switch (gameState)
 	{
-	auto bat = Factory::Instance().Create<Actor>("bat");
-	bat->transform.position = Vector2{ randomf(800),randomf(300) };
-	_scene->AddActor(std::move(bat), true);
-	spawnTimer = 2;
+	case SpaceGame::eState::TITLE:
+		if (_engine->GetInput().GetKeyDown(SDL_SCANCODE_SPACE)) {
+			_scene->GetActor<Actor>("text")->active = false;
+			gameState = eState::GAME;
+		}
+		break;
+	case SpaceGame::eState::STARTGAME:
+		break;
+	case SpaceGame::eState::GAME:
+		batSpawnTimer -= dt;
+		ghostSpawnTimer -= dt;
+
+
+		if (batSpawnTimer <= 0)
+		{
+			auto bat =	Factory::Instance().Create<Actor>("bat");
+			bat->transform.position = Vector2{ randomf(700)+100,randomf(300) };
+			_scene->AddActor(std::move(bat), true);
+			batSpawnTimer = 2;
+		}
+		if (ghostSpawnTimer <= 0)
+		{
+			auto ghost = Factory::Instance().Create<Actor>("ghost");
+			ghost->transform.position = Vector2{ randomf(700)+100,randomf(300) };
+			_scene->AddActor(std::move(ghost), true);
+			ghostSpawnTimer = 4;
+		}
+		if (_scene->GetActor<Actor>("player")->transform.position.y > 650)
+		{
+			gameState = eState::GAMEOVER;
+
+		}
+		break;
+	case SpaceGame::eState::PLAYERDEAD:
+		break;
+	case SpaceGame::eState::GAMEOVER:
+		_scene->GetActor<Actor>("gameover")->active = true;
+		break;
+	default:
+		break;
 	}
+
+
+
 
 	_scene->Update(dt);
 }

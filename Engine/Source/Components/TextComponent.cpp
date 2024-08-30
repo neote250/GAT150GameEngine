@@ -30,6 +30,10 @@ void TextComponent::Initialize()
 
 void TextComponent::Update(float dt)
 {
+	//if (active)
+	//{
+	//	
+	//}
 }
 
 void TextComponent::Draw(Renderer& renderer)

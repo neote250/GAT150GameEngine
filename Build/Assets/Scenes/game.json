@@ -101,7 +101,49 @@
           "type": "Box2DPhysicsComponent",
           "angularDamping": 1,
           "damping": 1,
-          "gravityScale": 0,
+          "gravityScale": 0.1,
+
+          "friction": 0.8,
+          "constrainAngle": true,
+          "restitution": 0.1,
+          "shape": "capsule",
+          "size": [ 32, 96 ],
+          "scale": [ 0.8, 0.65 ]
+        }
+      ]
+    },
+
+    {
+      "name": "ghost",
+      "transform": {
+        "position": [ 560, 400 ],
+        "rotation": 0,
+        "scale": 1
+      },
+      "prototype": true,
+      "components": [
+        {
+          "type": "TextureAnimationComponent",
+          "animationName": "idle",
+          "animations": [
+            {
+              "name": "idle",
+              "textureName": "textures/ghost-idle.png",
+              "fps": 10,
+              "loop": true,
+              "numColumns": 7,
+              "numRows": 1,
+              "startFrame": 1,
+              "endFrame": 7
+            }
+          ]
+        },
+        {
+          "type": "Box2DPhysicsComponent",
+          "angularDamping": 1,
+          "damping": 1,
+          "gravityScale": 0.2,
+
           "friction": 0.8,
           "constrainAngle": true,
           "restitution": 0.1,
@@ -119,12 +161,12 @@
       "transform": {
         "position": [ 400, 300 ],
         "rotation": 0,
-        "scale": 1
+        "scale": 0.08
       },
       "components": [
         {
           "type": "TextureComponent",
-          "textureName": "textures/rocket.png"
+          "textureName": "textures/bubble.png"
         },
         {
           "type": "Box2DPhysicsComponent",
@@ -144,6 +186,51 @@
           "playOnStart": true
         }
 
+      ]
+    },
+
+
+
+    {
+      "name": "text",
+      "active": true,
+      "transform": {
+        "position": [
+          400,
+          300
+        ],
+        "rotation": 0,
+        "scale": 2
+      },
+      "components": [
+        {
+          "type": "TextComponent",
+          "text": "Press Space to Start",
+          "fontName": "Fonts/AlphabetFantasie.ttf",
+          "fontSize": 24,
+          "color": [ 0, 1, 0, 1 ]
+        }
+      ]
+    },
+    {
+      "name": "gameover",
+      "active": false,
+      "transform": {
+        "position": [
+          400,
+          300
+        ],
+        "rotation": 0,
+        "scale": 2
+      },
+      "components": [
+        {
+          "type": "TextComponent",
+          "text": "Game Over",
+          "fontName": "Fonts/AlphabetFantasie.ttf",
+          "fontSize": 24,
+          "color": [ 0, 1, 0, 1 ]
+        }
       ]
     }
 

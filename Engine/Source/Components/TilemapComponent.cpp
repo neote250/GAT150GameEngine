@@ -18,7 +18,7 @@ void TilemapComponent::Initialize()
 			int x = i % numColumns;
 			int y = i / numColumns;
 
-			tile->transform.position = owner->transform.position * Vector2{ x,y } * tileSize;
+			tile->transform.position = owner->transform.position + Vector2{ x,y } * tileSize;
 			owner->scene->AddActor(std::move(tile), true);
 		}
 	}

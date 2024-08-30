@@ -34,6 +34,7 @@ void PlayerComponent::Update(float dt)
 		owner->scene->AddActor(std::move(rocket), true);
 		//owner->scene->engine->GetInput().GetMousePosition()
 	}
+	/*if (owner->scene->engine->GetInput().GetKeyDown(SDL_SCANCODE_SPACE) && owner->scene->);*/
 }
 
 void PlayerComponent::OnCollisionEnter(Actor* actor)

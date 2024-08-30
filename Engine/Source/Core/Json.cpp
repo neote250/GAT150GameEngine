@@ -162,7 +162,7 @@ namespace Json
     bool Read(const rapidjson::Value& value, const std::string& name, std::vector<int>& data, bool isRequired)
     {
         // check if the value has the "<name>" and is an array with 4 elements
-        if (!value.HasMember(name.c_str()) || !value[name.c_str()].IsArray() || value[name.c_str()].Size() != 4)
+        if (!value.HasMember(name.c_str()) || !value[name.c_str()].IsArray())
         {
             if (isRequired) std::cerr << "Could not read Json value: " << name << std::endl;
             return false;
@@ -188,7 +188,7 @@ namespace Json
     bool Read(const rapidjson::Value& value, const std::string& name, std::vector<std::string>& data, bool isRequired)
     {
         // check if the value has the "<name>" and is an array with 4 elements
-        if (!value.HasMember(name.c_str()) || !value[name.c_str()].IsArray() || value[name.c_str()].Size() != 4)
+        if (!value.HasMember(name.c_str()) || !value[name.c_str()].IsArray())
         {
             if (isRequired) std::cerr << "Could not read Json value: " << name << std::endl;
             return false;
